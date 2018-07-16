@@ -1,5 +1,9 @@
 package junit;
 
+import static org.junit.Assert.*;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,50 +11,43 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class Indian_Railways {
-	WebDriver driver;
+	static WebDriver dr;
 
-	/*@BeforeClass
-	public void browser() throws Exception {
+	@BeforeClass
+	public static void Login() throws Exception {
 		System.setProperty("webdriver.chrome.driver","G://chromedriver.exe");
-		driver=new ChromeDriver();
-		driver.get("http://www.indianrailways.gov.in");
-		driver.manage().window().maximize();
-		}
+		dr=new ChromeDriver();
+		dr.get("http://www.indianrailways.gov.in");
+		dr.manage().window().maximize();
+	}
 
 	@AfterClass
-	public void close() throws Exception {
-		driver.quit();
-	}*/
+	public static void tearDownAfterClass() throws Exception {
+		dr.quit();
+	}
 
 	@Test
 	public void mousehover() throws InterruptedException {
-		System.setProperty("webdriver.chrome.driver","G://chromedriver.exe");
-		driver=new ChromeDriver();
-		driver.get("http://www.indianrailways.gov.in");
-		driver.manage().window().maximize();
-		Actions a= new Actions(driver);
-		a.moveToElement(driver.findElement(By.xpath("//li[@size='8']//a[@href='#']"))).build().perform();
+		Actions a= new Actions(dr);
+		a.moveToElement(dr.findElement(By.xpath("//li[@size='8']//a[@href='#']"))).build().perform();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//a[@href='http://www.indianrailways.gov.in/railwayboard/']")).click();
+		dr.findElement(By.xpath("//a[@href='http://www.indianrailways.gov.in/railwayboard/']")).click();
 		//switch to other window
-		for (String handle : driver.getWindowHandles()) {
+		for (String handle : dr.getWindowHandles()) {
 			 
-		    driver.switchTo().window(handle);}
-		driver.findElement(By.xpath("//a[@href='http://www.indianrail.gov.in']")).click();
+		    dr.switchTo().window(handle);}
+		dr.findElement(By.xpath("//a[@href='http://www.indianrail.gov.in']")).click();
 		//switch to other window
-		for (String handle : driver.getWindowHandles()) {
+		for (String handle : dr.getWindowHandles()) {
 			 
-		    driver.switchTo().window(handle);}
+		    dr.switchTo().window(handle);}
 		//Services
-		driver.findElement(By.xpath("//a[@data-toggle='collapse'][contains(text(),'Services')]")).click();
+		dr.findElement(By.xpath("//a[@data-toggle='collapse'][contains(text(),'Services')]")).click();
 		//Availability at Major Stations
-		driver.findElement(By.xpath("//a[@data-toggle='collapse'][contains(text(),'Availability at Major Stations')]")).click();
+		dr.findElement(By.xpath("//a[@data-toggle='collapse'][contains(text(),'Availability at Major Stations')]")).click();
 		//seat availability
-		driver.findElement(By.xpath("//a[@href='../SEAT/SeatAvailability.html?locale=en']")).click();
-		
-		
+		dr.findElement(By.xpath("//a[@href='../SEAT/SeatAvailability.html?locale=en']")).click();
 		//driver.quit();
-		
 	}
 
 }

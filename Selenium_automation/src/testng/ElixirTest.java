@@ -2,7 +2,14 @@ package testng;
 
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeTest;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterTest;
@@ -11,10 +18,12 @@ public class ElixirTest {
 	static WebDriver driver;
 
   @Test
-  public void f() {
+  public void f() throws IOException {
 	
 			driver.findElement(By.xpath("//*[@id=\"UserLogin_username\"]")).sendKeys("admin");
 			driver.findElement(By.xpath("//*[@id=\"UserLogin_password\"]")).sendKeys("admin");
+			
+			
 			driver.findElement(By.xpath("/html/body/div[3]/div/div/div/div[2]/form/div[4]/input")).click();	  
   }
   @BeforeTest
@@ -23,6 +32,8 @@ public class ElixirTest {
 		driver=new ChromeDriver();
 		driver.get("http://demo.elixiraid.com/index.php");
 		driver.manage().window().maximize();
+		
+		
   }
 
   @AfterTest
